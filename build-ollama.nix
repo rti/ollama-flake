@@ -23,12 +23,12 @@
 
 let
   pname = "ollama";
-  version = "0.1.28";
+  version = "0.1.29";
   src = fetchFromGitHub {
     owner = "ollama";
     repo = "ollama";
     rev = "v${version}";
-    hash = "sha256-8f7veZitorNiqGBPJuf/Y36TcFK8Q75Vw4w6CeTk8qs=";
+    hash = "sha256-M2G53DJF/22ZVCAb4jGjyErKO6q2argehHSV7AEef6w=";
     fetchSubmodules = true;
   };
 
@@ -95,7 +95,7 @@ goBuild ((lib.optionalAttrs rocmIsEnabled {
   CUDAToolkit_ROOT = cudaToolkit;
 }) // {
   inherit pname version src;
-  vendorHash = "sha256-DPIhDqE/yXpSQqrx07osMBMafK61yU2dl4cZhxSTvm8=";
+  vendorHash = "sha256-Lj7CBvS51RqF63c01cOCgY7BCQeCKGu794qzb/S80C0=";
 
   nativeBuildInputs = [
     cmake

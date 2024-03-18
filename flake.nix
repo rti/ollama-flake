@@ -23,15 +23,15 @@
       buildOllama = pkgs: overrides: pkgs.callPackage ./build-ollama.nix overrides;
 
       unixPackages = (forAllSystems lib.platforms.unix (pkgs: _: {
-        default = buildOllama pkgs { };
+        default = buildOllama pkgs { buildGoModule = pkgs.buildGo122Module; };
       }));
 
       linuxPackages = (forAllSystems lib.platforms.linux (pkgs: pkgsUnfree: {
-        default = buildOllama pkgsUnfree { enableRocm = true; enableCuda = true; };
-        gpu = buildOllama pkgsUnfree { enableRocm = true; enableCuda = true; };
-        rocm = buildOllama pkgs { enableRocm = true; };
-        cuda = buildOllama pkgsUnfree { enableCuda = true; };
-        cpu = buildOllama pkgs { };
+        default = buildOllama pkgsUnfree { buildGoModule = pkgs.buildGo122Module; enableRocm = true; enableCuda = true; };
+        gpu = buildOllama pkgsUnfree { buildGoModule = pkgs.buildGo122Module; enableRocm = true; enableCuda = true; };
+        rocm = buildOllama pkgs { buildGoModule = pkgs.buildGo122Module; enableRocm = true; };
+        cuda = buildOllama pkgsUnfree { buildGoModule = pkgs.buildGo122Module; enableCuda = true; };
+        cpu = buildOllama pkgs { buildGoModule = pkgs.buildGo122Module; };
       }));
     in
     {
